@@ -1,4 +1,5 @@
 PS4 PKG/PFS tool (c) 2017-2021 by flatz
+Forked by rtyker to compilation on Archlinux
 
 Dependencies:
 * mbedtls
