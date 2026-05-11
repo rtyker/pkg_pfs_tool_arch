@@ -76,11 +76,11 @@ include_directories(${ZLIB_INCLUDE_DIRS})
 list(APPEND LIBS ${ZLIB_LIBRARIES})
 
 find_package(MBEDTLS 2.24.0 REQUIRED)
-include_directories(${MBEDTLS_INCLUDE_DIRS})
+include_directories(${MBEDTLS_INCLUDE_DIR})
 list(APPEND LIBS ${MBEDTLS_LIBRARIES})
 
 find_package(UTHASH REQUIRED)
-include_directories(${UTHASH_INCLUDE_DIRS})
+include_directories(${UTHASH_INCLUDE_DIR})
 
 #
 # Project settings.
@@ -95,3 +95,9 @@ include_directories(src)
 
 add_executable(pkg_pfs_tool ${SRCS})
 target_link_libraries(pkg_pfs_tool ${LIBS})
+
+add_custom_command(TARGET pkg_pfs_tool POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+		"${CMAKE_SOURCE_DIR}/config.ini"
+		"$<TARGET_FILE_DIR:pkg_pfs_tool>/config.ini"
+)

@@ -1,10 +1,23 @@
 PS4 PKG/PFS tool (c) 2017-2021 by flatz
 Forked by rtyker to compilation on Archlinux
 
+Fork notes:
+* This fork tracks local Linux build fixes for `mbedtls`/`uthash` include discovery.
+* `config.ini` is copied into `build/` after compilation.
+* See `AGENTE_IA.md` for the exact rebuild procedure used in this environment.
+
 Dependencies:
 * mbedtls
 * uthash
 * zlib
+
+For Arch Linux:
+```bash
+sudo pacman -S --needed base-devel cmake mbedtls uthash zlib
+cmake -S . -B build
+cmake --build build -j"$(nproc)"
+./build/pkg_pfs_tool --help
+```
 
 For ubuntu-ish:
 ```bash
